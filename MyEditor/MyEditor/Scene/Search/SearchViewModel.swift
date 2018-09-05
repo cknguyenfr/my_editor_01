@@ -33,7 +33,6 @@ struct SearchViewModel: ViewModelType {
     
     let navigator: SearchNavigatorType
     let useCase: SearchUseCase
-    fileprivate let maxCountOfHistories = 5
     //arrTrending is a constant array
     let arrTrending = ["krishna", "girls", "4k wallpaper", "mehndi", "fall"]
     struct SuggestSection {

@@ -14,9 +14,10 @@ import RxSwift
 
 class HomeViewController: UIViewController, BindableType {
     @IBOutlet weak private var randomImageView: UIImageView!
-    @IBOutlet weak var exploreCollectionView: LoadMoreCollectionView!
-    @IBOutlet weak var photosTableView: RefreshTableView!
+    @IBOutlet private weak var exploreCollectionView: LoadMoreCollectionView!
+    @IBOutlet private weak var photosTableView: RefreshTableView!
     @IBOutlet private weak var topView: UIView!
+    @IBOutlet private weak var searchBar: UISearchBar!
     var viewModel: HomeViewModel!
     var arrPhotos = [Photo]()
     
@@ -27,6 +28,10 @@ class HomeViewController: UIViewController, BindableType {
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.dismissKeyboard()
     }
     
     func configView() {
@@ -56,7 +61,8 @@ class HomeViewController: UIViewController, BindableType {
             reloadCollectionViewTrigger: exploreCollectionView.refreshTrigger,
             loadMoreCollectionViewTrigger: exploreCollectionView.loadMoreTrigger,
             selectTableViewTrigger: photosTableView.rx.itemSelected.asDriver(),
-            selectCollectionViewTrigger: exploreCollectionView.rx.itemSelected.asDriver()
+            selectCollectionViewTrigger: exploreCollectionView.rx.itemSelected.asDriver(),
+            toSearchViewTrigger: searchBar.rx.textDidBeginEditing.asDriver()
         )
         
         let output = viewModel.transform(input)
@@ -124,6 +130,9 @@ class HomeViewController: UIViewController, BindableType {
             .drive()
             .disposed(by: rx.disposeBag)
         output.selectedCollection
+            .drive()
+            .disposed(by: rx.disposeBag)
+        output.toSearchResult
             .drive()
             .disposed(by: rx.disposeBag)
     }

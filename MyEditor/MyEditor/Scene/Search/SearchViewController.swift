@@ -57,11 +57,6 @@ class SearchViewController: UIViewController, BindableType {
                 self.dismissKeyboard()
             })
             .disposed(by: rx.disposeBag)
-//        //config Cancel button
-//        cancelButton.rx.tap.asObservable().subscribe(onNext: { _ in
-//                self.navigationController?.popViewController(animated: true)
-//            })
-//            .disposed(by: rx.disposeBag)
     }
     
     func bindViewModel() {

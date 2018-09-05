@@ -20,6 +20,7 @@ struct HomeViewModel: ViewModelType {
         let loadMoreCollectionViewTrigger: Driver<Void>
         let selectTableViewTrigger: Driver<IndexPath>
         let selectCollectionViewTrigger: Driver<IndexPath>
+        let toSearchViewTrigger: Driver<Void>
     }
     
     struct Output {
@@ -40,6 +41,7 @@ struct HomeViewModel: ViewModelType {
         let isEmptyCollectionData: Driver<Bool>
         let selectedCollection: Driver<Void>
         let selectedPhoto: Driver<Void>
+        let toSearchResult: Driver<Void>
     }
     
     let navigator: HomeNavigatorType
@@ -73,8 +75,7 @@ struct HomeViewModel: ViewModelType {
                 return collections[indexPath.row]
             }
             .do(onNext: { collection in
-//                self.navigator.toCollectionScreen(collection: collection)
-                self.navigator.toSearchScreen()
+                self.navigator.toCollectionScreen(collection: collection)
             })
             .mapToVoid()
         let selectedPhoto = input.selectTableViewTrigger
@@ -94,6 +95,9 @@ struct HomeViewModel: ViewModelType {
             .map { photo in
                 return photo.urls.regular
             }
+        let toSearchResult = input.toSearchViewTrigger.do(onNext: { _ in
+                self.navigator.toSearchScreen()
+            })
         
         return Output(
             errorTableView: loadErrorTable,
@@ -112,7 +116,8 @@ struct HomeViewModel: ViewModelType {
             isEmptyPhotoData: isEmptyPhotos,
             isEmptyCollectionData: isEmptyCollections,
             selectedCollection: selectedCollection,
-            selectedPhoto: selectedPhoto
+            selectedPhoto: selectedPhoto,
+            toSearchResult: toSearchResult
         )
     }
 }

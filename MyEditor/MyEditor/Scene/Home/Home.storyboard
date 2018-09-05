@@ -39,7 +39,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="hFX-uN-nbl" secondAttribute="trailing" id="LcM-cc-JU8"/>
                                                 <constraint firstItem="hFX-uN-nbl" firstAttribute="top" secondItem="9FU-85-AAw" secondAttribute="top" id="XpX-w2-aUI"/>
                                                 <constraint firstAttribute="bottom" secondItem="hFX-uN-nbl" secondAttribute="bottom" id="slE-tw-nnN"/>
-                                            </constraints>
+                                           </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Explore" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="46y-Zx-BuK">
                                             <rect key="frame" x="20" y="389.5" width="61.5" height="20"/>
