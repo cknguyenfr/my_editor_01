@@ -98,6 +98,7 @@
 		1B757C47213675410007B882 /* CollectionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B757C46213675410007B882 /* CollectionRepository.swift */; };
 		1B757C4921367DB10007B882 /* HomeUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B757C4821367DB10007B882 /* HomeUseCase.swift */; };
 		1B757C4B21368AA50007B882 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B757C4A21368AA50007B882 /* HomeViewModel.swift */; };
+		1BC29E4821467C27004BEEFB /* RandomImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BC29E4721467C27004BEEFB /* RandomImageRequest.swift */; };
 		1BD4A3F22137915C0022643F /* HomeNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD4A3F12137915C0022643F /* HomeNavigator.swift */; };
 		1BD4A3F42137A8B80022643F /* LoadMoreCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD4A3F32137A8B70022643F /* LoadMoreCollectionView.swift */; };
 		1BD4A3F62137CBCB0022643F /* ImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD4A3F52137CBCB0022643F /* ImageViewExtension.swift */; };
@@ -205,6 +206,7 @@
 		1B757C46213675410007B882 /* CollectionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionRepository.swift; sourceTree = "<group>"; };
 		1B757C4821367DB10007B882 /* HomeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUseCase.swift; sourceTree = "<group>"; };
 		1B757C4A21368AA50007B882 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		1BC29E4721467C27004BEEFB /* RandomImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomImageRequest.swift; sourceTree = "<group>"; };
 		1BD4A3F12137915C0022643F /* HomeNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigator.swift; sourceTree = "<group>"; };
 		1BD4A3F32137A8B70022643F /* LoadMoreCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadMoreCollectionView.swift; sourceTree = "<group>"; };
 		1BD4A3F52137CBCB0022643F /* ImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewExtension.swift; sourceTree = "<group>"; };
@@ -399,6 +401,7 @@
 				08F6EE8421363CF000F895B6 /* CollectionResquest.swift */,
 				08F6EE8021363C5200F895B6 /* SearchRequest.swift */,
 				08F6EE8D2136755000F895B6 /* PhotoInCollectionRequest.swift */,
+				1BC29E4721467C27004BEEFB /* RandomImageRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -810,6 +813,7 @@
 				08C1F211213E22CB005704D2 /* ListImageCell.swift in Sources */,
 				0851BB952138D0900059C43F /* Album.swift in Sources */,
 				1BD4A3F42137A8B80022643F /* LoadMoreCollectionView.swift in Sources */,
+				1BC29E4821467C27004BEEFB /* RandomImageRequest.swift in Sources */,
 				1B757C47213675410007B882 /* CollectionRepository.swift in Sources */,
 				08787AC12134F24000569477 /* ViewModelType.swift in Sources */,
 				08072A9A21377FB40020F80E /* AppNavigator.swift in Sources */,
@@ -1006,7 +1010,10 @@
 				DEVELOPMENT_TEAM = VG5JZ5RSZ7;
 				INFOPLIST_FILE = MyEditor/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = c.MyEditor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1023,7 +1030,10 @@
 				DEVELOPMENT_TEAM = VG5JZ5RSZ7;
 				INFOPLIST_FILE = MyEditor/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = c.MyEditor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

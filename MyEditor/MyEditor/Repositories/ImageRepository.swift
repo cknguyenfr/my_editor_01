@@ -10,7 +10,7 @@ import RxSwift
 
 protocol ImageRepositoryType {
     func getNewPhotos(page: Int, perPage: Int) -> Observable<[Photo]>
-    func searchPhotos(query: String, page: Int, perPage: Int) -> Observable<[Photo]>
+    func searchPhotos(querry: String, page: Int, perPage: Int) -> Observable<[Photo]>
 }
 
 final class ImageRepository: ImageRepositoryType {
@@ -28,8 +28,8 @@ final class ImageRepository: ImageRepositoryType {
             }
     }
     
-    func searchPhotos(query: String, page: Int = 1, perPage: Int = 10) -> Observable<[Photo]> {
-        let request = SearchRequest(query: query, page: page, perPage: perPage)
+    func searchPhotos(querry: String, page: Int = 1, perPage: Int = 10) -> Observable<[Photo]> {
+        let request = SearchRequest(query: querry, page: page, perPage: perPage)
         return api.request(input: request)
             .map { (output: SearchResponse) -> [Photo] in
                 return output.results

@@ -12,10 +12,11 @@ import Then
 import RxCocoa
 
 class HomeViewController: UIViewController, BindableType {
+    @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet private weak var exploreCollectionView: LoadMoreCollectionView!
     @IBOutlet private weak var photosTableView: RefreshTableView!
     @IBOutlet private weak var topView: UIView!
-    @IBOutlet private weak var searchBar: UISearchBar!
+    
     var viewModel: HomeViewModel!
     var arrPhotos = [Photo]()
     
@@ -26,6 +27,7 @@ class HomeViewController: UIViewController, BindableType {
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = true
+        self.dismissKeyboard()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -47,6 +49,9 @@ class HomeViewController: UIViewController, BindableType {
         exploreCollectionView.rx
             .setDelegate(self)
             .disposed(by: rx.disposeBag)
+        searchBar.do {
+            $0.backgroundColor = .clear
+        }
     }
     
     func bindViewModel() {

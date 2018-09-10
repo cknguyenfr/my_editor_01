@@ -20,10 +20,10 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="q7g-Qy-D3a">
-                        <rect key="frame" x="0.0" y="0.0" width="547" height="222"/>
+                        <rect key="frame" x="0.0" y="30" width="547" height="192"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hm7-rg-YAy">
-                        <rect key="frame" x="40" y="99.5" width="467" height="23.5"/>
+                        <rect key="frame" x="40" y="114.5" width="467" height="23.5"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                         <color key="textColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -37,7 +37,7 @@
                 <constraint firstItem="Hm7-rg-YAy" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="40" id="OgH-w4-Xbl"/>
                 <constraint firstItem="Hm7-rg-YAy" firstAttribute="centerY" secondItem="q7g-Qy-D3a" secondAttribute="centerY" id="PM6-x5-arn"/>
                 <constraint firstAttribute="bottom" secondItem="q7g-Qy-D3a" secondAttribute="bottom" id="Yd8-VU-Jem"/>
-                <constraint firstItem="q7g-Qy-D3a" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="t0L-Dr-zt7"/>
+                <constraint firstItem="q7g-Qy-D3a" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="30" id="t0L-Dr-zt7"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="547" height="222"/>

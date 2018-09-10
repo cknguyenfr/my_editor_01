@@ -26,10 +26,16 @@ class SearchViewController: UIViewController, BindableType {
         configView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true
+        self.searchBar.text = ""
+    }
+    
     fileprivate typealias SuggestSectionModel = SectionModel<String, String>
     fileprivate let dataSource = RxTableViewSectionedReloadDataSource<SectionModel<String, String>>(
         configureCell: { (dataSource, tableView, indexPath, data) -> UITableViewCell in
             let cell = tableView.dequeueReusableCell(for: indexPath) as SearchCell
+            cell.selectionStyle = .none
             cell.fillData(history: data)
             return cell
         },
@@ -62,7 +68,7 @@ class SearchViewController: UIViewController, BindableType {
     func bindViewModel() {
         let input = SearchViewModel.Input(
             loadTrigger: Driver.just(()),
-            searchTrigger: searchBar.rx.textDidEndEditing.asDriver(),
+            searchTrigger: searchBar.rx.searchButtonClicked.asDriver() ,
             selectTrigger: searchTableView.rx.itemSelected.asDriverOnErrorJustComplete(),
             keywordTrigger: searchBar.rx.text.orEmpty.asDriver(),
             cancelTrigger: cancelButton.rx.tap.asDriver()
@@ -82,6 +88,9 @@ class SearchViewController: UIViewController, BindableType {
             .drive()
             .disposed(by: rx.disposeBag)
         output.cancelTriggerResult
+            .drive()
+            .disposed(by: rx.disposeBag)
+        output.toCollectionResult
             .drive()
             .disposed(by: rx.disposeBag)
     }

@@ -12,6 +12,7 @@ protocol CollectionImagesNavigatorType {
     func toHomeScreen()
     func toImageDetailScreen()
     func toCollectionImagesScreen(collection: Collection)
+    func toCollectionImageWith(searchKey: String)
 }
 
 struct CollectionImagesNavigator: CollectionImagesNavigatorType {
@@ -19,13 +20,19 @@ struct CollectionImagesNavigator: CollectionImagesNavigatorType {
     
     func toCollectionImagesScreen(collection: Collection) {
         let vc = CollectionImageViewController.instantiate()
-        let model = CollectionImagesViewModel(navigator: self, useCase: CollectionImagesUseCase(), collection: collection)
+        let model = CollectionImagesViewModel(navigator: self, useCase: CollectionImagesUseCase(), collection: collection, searchKey: "")
+        vc.bindViewModel(to: model)
+        self.navigationViewController.pushViewController(vc, animated: true)
+    }
+    
+    func toCollectionImageWith(searchKey: String) {
+        let vc = CollectionImageViewController.instantiate()
+        let model = CollectionImagesViewModel(navigator: self, useCase: CollectionImagesUseCase(), collection: Collection(), searchKey: searchKey)
         vc.bindViewModel(to: model)
         self.navigationViewController.pushViewController(vc, animated: true)
     }
     
     func toHomeScreen() {
-        
         self.navigationViewController.popViewController(animated: true)
     }
     // TODO: - NEXT_TASK

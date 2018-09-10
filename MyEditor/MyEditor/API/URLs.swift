@@ -13,4 +13,5 @@ struct URLs {
     static let photosUrl = baseUrl + "/photos"
     static let collectionsUrl = baseUrl + "/collections"
     static let searchUrl = baseUrl + "/search/photos"
+    static let randomUrl = baseUrl + "/photos/random"
 }

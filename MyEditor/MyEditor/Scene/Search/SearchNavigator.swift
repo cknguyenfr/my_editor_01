@@ -11,7 +11,7 @@ import UIKit
 protocol SearchNavigatorType {
     func toSearchScreen()
     func toHomeScreen()
-    func toCollectionImagesScreen(collection: Collection)
+    func toCollectionImagesScreen(keyword: String)
 }
 
 struct SearchNavigator: SearchNavigatorType {
@@ -27,7 +27,9 @@ struct SearchNavigator: SearchNavigatorType {
     func toHomeScreen() {
         self.navigationViewController.popViewController(animated: true)
     }
-    //TODO: NEXT_TASK
-    func toCollectionImagesScreen(collection: Collection) {
+    
+    func toCollectionImagesScreen(keyword: String) {
+        let navigator = CollectionImagesNavigator(navigationViewController: self.navigationViewController)
+        navigator.toCollectionImageWith(searchKey: keyword)
     }
 }

@@ -29,6 +29,7 @@ struct SearchViewModel: ViewModelType {
         let fetchData: Driver<Void>
         let loadResult: Driver<Void>
         let cancelTriggerResult: Driver<Void>
+        let toCollectionResult: Driver<Void>
     }
     
     let navigator: SearchNavigatorType
@@ -46,17 +47,24 @@ struct SearchViewModel: ViewModelType {
                 arrHistory.accept(histories)
             }
         let toCollectionResult = input.searchTrigger.withLatestFrom(input.keywordTrigger) { _, keyword -> String in
-                self.navigator.toCollectionImagesScreen(collection: Collection())
+                self.navigator.toCollectionImagesScreen(keyword: keyword)
                 return keyword
             }
         let fetchData = toCollectionResult.withLatestFrom(arrHistory.asDriver()) { searchKey, histories in
-                var latestArray = histories
-                latestArray.insert(searchKey, at: 0)
-                if latestArray.count >= ConstantData.maxHistoryDisplay {
-                    latestArray.remove(at: ConstantData.maxHistoryDisplay - 1)
-                }
-                self.useCase.saveHistory(histories: histories)
-                arrHistory.accept(latestArray)
+//                var latestArray = histories
+//                if self.useCase.checkHistoryExist(histories: histories, keyword: searchKey) == 0 {
+//                    if latestArray.count >= ConstantData.maxHistoryDisplay {
+//                        latestArray.remove(at: ConstantData.maxHistoryDisplay - 1)
+//                    } else {
+//                        latestArray.remove(at: latestArray.count - 1)
+//                    }
+//                } else {
+//                    latestArray.remove(at: self.useCase.checkHistoryExist(histories: histories, keyword: searchKey))
+//                }
+//                latestArray.insert(searchKey, at: 0)
+//                self.useCase.saveHistory(histories: latestArray)
+//                arrHistory.accept(latestArray)
+                self.useCase.saveHistoryAndUpdate(histories: histories, searchKey: searchKey, relay: arrHistory, maxHistoryCount: ConstantData.maxHistoryDisplay)
             }
         let sectioned = arrHistory
             .map { [
@@ -67,11 +75,30 @@ struct SearchViewModel: ViewModelType {
         let cancelResult = input.cancelTrigger.do(onNext: {
                 self.navigator.toHomeScreen()
             })
+        let toCollectionScreenResult = input.selectTrigger.withLatestFrom(sectioned) { indexPath, section in
+            let arrKey = section[indexPath.section].productList
+            self.navigator.toCollectionImagesScreen(keyword: arrKey[indexPath.row])
+//            var latestArray = section[0].productList
+//            if self.useCase.checkHistoryExist(histories: latestArray, keyword: arrKey[indexPath.row]) == 0 {
+//                if latestArray.count >= ConstantData.maxHistoryDisplay {
+//                    latestArray.remove(at: ConstantData.maxHistoryDisplay - 1)
+//                } else {
+//                    latestArray.remove(at: latestArray.count - 1)
+//                }
+//            } else {
+//                latestArray.remove(at: self.useCase.checkHistoryExist(histories: latestArray, keyword: arrKey[indexPath.row]))
+//            }
+//            latestArray.insert(arrKey[indexPath.row], at: 0)
+//            self.useCase.saveHistory(histories: latestArray)
+//            arrHistory.accept(latestArray)
+            self.useCase.saveHistoryAndUpdate(histories: section[0].productList, searchKey: arrKey[indexPath.row], relay: arrHistory, maxHistoryCount: ConstantData.maxHistoryDisplay)
+        }
         return Output(
             sectionedSuggest: sectioned,
             fetchData: fetchData,
             loadResult: loadResult,
-            cancelTriggerResult: cancelResult
+            cancelTriggerResult: cancelResult,
+            toCollectionResult: toCollectionScreenResult
         )
     }
 }
