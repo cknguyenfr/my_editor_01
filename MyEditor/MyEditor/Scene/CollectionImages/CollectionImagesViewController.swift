@@ -79,7 +79,7 @@ class CollectionImageViewController: UIViewController, BindableType {
         output.isEmptyData
             .drive()
             .disposed(by: rx.disposeBag)
-        output.collection.map { $0.title }
+        output.collection
             .drive(navigationItem.rx.title)
             .disposed(by: rx.disposeBag)
         output.ratios.asObservable().subscribe(onNext: { ratios in

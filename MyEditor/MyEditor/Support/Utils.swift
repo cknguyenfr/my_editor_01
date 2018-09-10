@@ -31,3 +31,12 @@ func readHistorySearch() -> [String] {
     }
     return result
 }
+
+func checkHistoryArray(histories: [String], keyword: String) -> Int {
+    for index in 0..<histories.count {
+        if histories[index].lowercased() == keyword.lowercased() {
+            return index
+        }
+    }
+    return -1
+}

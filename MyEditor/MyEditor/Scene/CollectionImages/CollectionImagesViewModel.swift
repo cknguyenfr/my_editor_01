@@ -27,28 +27,45 @@ struct CollectionImagesViewModel: ViewModelType {
         let photos: Driver<[Photo]>
         let selectedPhoto: Driver<Void>
         let isEmptyData: Driver<Bool>
-        let collection: Driver<Collection>
-        let ratios: BehaviorRelay<[CGFloat]>
+        let collection: Driver<String>
+        let ratios: Driver<[CGFloat]>
+        let toHomeResult: Driver<Void>
     }
     
     let navigator: CollectionImagesNavigatorType
     let useCase: CollectionImagesUseCaseType
     let collection: Collection
-    let disposeBag = DisposeBag()
+    let searchKey: String
     
     func transform(_ input: Input) -> Output {
-        let loadMoreOutput = setupLoadMorePagingWithParam(
-            loadTrigger: input.loadTrigger,
-            getItems: { (_) -> Observable<PagingInfo<Photo>> in
-                self.useCase.getPhotos(collection: self.collection)
-            },
-            refreshTrigger: input.reloadTrigger,
-            refreshItems: { (_) -> Observable<PagingInfo<Photo>> in
-                self.useCase.getPhotos(collection: self.collection)
-            },
-            loadMoreTrigger: input.loadMoreTrigger) { (_, page) -> Observable<PagingInfo<Photo>> in
-                self.useCase.getPhotos(collection: self.collection, page: page)
-            }
+        let loadMoreOutput: (BehaviorRelay<PagingInfo<Photo>>, Driver<Void>, Driver<Error>, Driver<Bool>, Driver<Bool>, Driver<Bool>)!
+        if collection.id == 0 && !searchKey.isEmpty {
+            loadMoreOutput = setupLoadMorePagingWithParam(
+                loadTrigger: input.loadTrigger,
+                getItems: { (_) -> Observable<PagingInfo<Photo>> in
+                    self.useCase.getPhotosWithSearchKey(querry: self.searchKey)
+                },
+                refreshTrigger: input.reloadTrigger,
+                refreshItems: { (_) -> Observable<PagingInfo<Photo>> in
+                    self.useCase.getPhotosWithSearchKey(querry: self.searchKey)
+                },
+                loadMoreTrigger: input.loadMoreTrigger) { (_, page) -> Observable<PagingInfo<Photo>> in
+                self.useCase.getPhotosWithSearchKey(querry: self.searchKey, page: page)
+                }
+        } else {
+            loadMoreOutput = setupLoadMorePagingWithParam(
+                loadTrigger: input.loadTrigger,
+                getItems: { (_) -> Observable<PagingInfo<Photo>> in
+                    self.useCase.getPhotos(collection: self.collection)
+                },
+                refreshTrigger: input.reloadTrigger,
+                refreshItems: { (_) -> Observable<PagingInfo<Photo>> in
+                    self.useCase.getPhotos(collection: self.collection)
+                },
+                loadMoreTrigger: input.loadMoreTrigger) { (_, page) -> Observable<PagingInfo<Photo>> in
+                    self.useCase.getPhotos(collection: self.collection, page: page)
+                }
+        }
         let (page, fetchItem, loadError, loading, refreshing, loadingMore) = loadMoreOutput
         let photos = page
             .map { $0.items }
@@ -62,28 +79,21 @@ struct CollectionImagesViewModel: ViewModelType {
                 print("For next task - navigator")
             })
             .mapToVoid()
-        let collectionObservable = Observable<Collection>.create { (observer) in
-            observer.onNext(self.collection)
-            observer.onCompleted()
-            return Disposables.create()
-        }.asDriverOnErrorJustComplete()
+        let titleObservable = searchKey.isEmpty ? BehaviorRelay<String>(value: collection.title) : BehaviorRelay<String>(value: searchKey)
         let isEmptyData = Driver.combineLatest(photos, loading)
             .filter { !$0.1 }
             .map { $0.0.isEmpty }
-        input.toHomeScreenTrigger.asObservable().subscribe(onNext: {
-            self.navigator.toHomeScreen()
+        let toHomeResult = input.toHomeScreenTrigger.do(onNext: { _ in
+                self.navigator.toHomeScreen()
             })
-            .disposed(by: disposeBag)
         var arrRatio = [CGFloat]()
-        let observableRelay = BehaviorRelay<[CGFloat]>(value: arrRatio)
-        photos.asObservable().subscribe(onNext: { photos in
-                arrRatio.removeAll()
-                for photo in photos {
-                    arrRatio.append(CGFloat(photo.width) / CGFloat(photo.height))
-                }
-                observableRelay.accept(arrRatio)
-            })
-            .disposed(by: disposeBag)
+        let ratios = photos.map { photos -> [CGFloat] in
+            arrRatio.removeAll()
+            for photo in photos {
+                arrRatio.append(CGFloat(photo.width) / CGFloat(photo.height))
+            }
+            return arrRatio
+        }
         return Output(
             error: loadError,
             loading: loading,
@@ -93,8 +103,9 @@ struct CollectionImagesViewModel: ViewModelType {
             photos: photos,
             selectedPhoto: selectedPhoto,
             isEmptyData: isEmptyData,
-            collection: collectionObservable,
-            ratios: observableRelay
+            collection: titleObservable.asDriver(),
+            ratios: ratios,
+            toHomeResult: toHomeResult
         )
     }
 }
