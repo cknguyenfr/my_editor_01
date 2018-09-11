@@ -23,4 +23,5 @@ pod 'Kingfisher'
 pod 'RxGesture'
 pod 'RxDataSources'
 pod 'Toast-Swift'
+pod 'UICircularProgressRing'
 end

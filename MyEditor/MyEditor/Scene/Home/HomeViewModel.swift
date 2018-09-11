@@ -82,8 +82,8 @@ struct HomeViewModel: ViewModelType {
             .withLatestFrom(photos) { indexPath, photos in
                 return photos[indexPath.row]
             }.do(onNext: { photo in
-                // TODO: - NEXT_TASK
-                print(photo)
+                self.navigator.toImageDetailScreen(photo: photo)
+//                print(photo)
             })
             .mapToVoid()
         let randomPhoto = input.randomImageTrigger

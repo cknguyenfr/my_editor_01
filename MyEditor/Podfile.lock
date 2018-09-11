@@ -28,6 +28,7 @@ PODS:
   - SnapKit (4.0.0)
   - Then (2.3.0)
   - Toast-Swift (3.0.1)
+  - UICircularProgressRing (3.2.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -46,7 +47,11 @@ DEPENDENCIES:
   - RxSwift
   - SnapKit
   - Then
+<<<<<<< HEAD
   - Toast-Swift
+=======
+  - UICircularProgressRing
+>>>>>>> create detail ui
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -67,7 +72,11 @@ SPEC REPOS:
     - RxSwift
     - SnapKit
     - Then
+<<<<<<< HEAD
     - Toast-Swift
+=======
+    - UICircularProgressRing
+>>>>>>> create detail ui
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
@@ -87,8 +96,14 @@ SPEC CHECKSUMS:
   RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   Then: ee21c97b85ff6062b9b0080c9abb1eea46743345
+<<<<<<< HEAD
   Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
 
 PODFILE CHECKSUM: 1516dd9c13665bfb088b7641929d91e470de5f59
+=======
+  UICircularProgressRing: 12c5b6e9bbe9c254052f31a150d22eaaa3555d01
+
+PODFILE CHECKSUM: 811ce1768b1edc4db403d1ab6824d625c3b40a6d
+>>>>>>> create detail ui
 
 COCOAPODS: 1.5.3

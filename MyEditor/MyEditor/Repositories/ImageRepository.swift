@@ -12,6 +12,7 @@ protocol ImageRepositoryType {
     func getNewPhotos(page: Int, perPage: Int) -> Observable<[Photo]>
     func getRandomPhoto() -> Observable<Photo>
     func searchPhotos(querry: String, page: Int, perPage: Int) -> Observable<[Photo]>
+    func getDetailImage(photo: Photo) -> Observable<Photo>
 }
 
 final class ImageRepository: ImageRepositoryType {
@@ -40,6 +41,14 @@ final class ImageRepository: ImageRepositoryType {
         return api.request(input: request)
             .map { (output: SearchResponse) -> [Photo] in
                 return output.results
+            }
+    }
+    
+    func getDetailImage(photo: Photo) -> Observable<Photo> {
+        let request = DetailImageRequest(photo: photo)
+        return api.request(input: request)
+            .map { (output: Photo) -> Photo in
+                return output
             }
     }
 }

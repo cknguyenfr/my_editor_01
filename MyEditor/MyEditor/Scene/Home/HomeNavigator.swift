@@ -10,7 +10,7 @@ import UIKit
 
 protocol HomeNavigatorType {
     func toHomeScreen()
-    func toImageDetailScreen()
+    func toImageDetailScreen(photo: Photo)
     func toCollectionScreen(collection: Collection)
     func toSearchScreen()
 }
@@ -30,9 +30,9 @@ struct HomeNavigator: HomeNavigatorType {
         navigator.toCollectionImagesScreen(collection: collection)
     }
     
-    // TODO: - NEXT_TASK
-    func toImageDetailScreen() {
-        print("for next task")
+    func toImageDetailScreen(photo: Photo) {
+        let navigator = DetailImageNavigator(navigationController: navigationViewController)
+        navigator.toDetailScreen(photo: photo)
     }
     
     func toSearchScreen() {

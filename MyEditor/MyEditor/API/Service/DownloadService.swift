@@ -26,7 +26,8 @@ class DownloadService: NSObject {
                 return Disposables.create()
             }
             ImageDownloader.default.downloadImage(with: url, progressBlock: { (current, total) in
-                observer.onNext(Double(current) / Double(total))
+                observer.onNext(Double(current) * 100 / Double(total))
+                print("_____ \(Double(current) * 100 / Double(total)) ________")
             })
             return Disposables.create()
         }
