@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tVx-Cs-8oT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tVx-Cs-8oT">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -32,14 +32,23 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="hFX-uN-nbl">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="384.5"/>
                                                 </imageView>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search here ..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6pa-RH-zqg">
+                                                    <rect key="frame" x="20" y="177.5" width="335" height="30"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
                                             </subviews>
                                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                             <constraints>
+                                                <constraint firstItem="6pa-RH-zqg" firstAttribute="centerY" secondItem="hFX-uN-nbl" secondAttribute="centerY" id="AlJ-TC-HCn"/>
                                                 <constraint firstItem="hFX-uN-nbl" firstAttribute="leading" secondItem="9FU-85-AAw" secondAttribute="leading" id="KGP-29-xWH"/>
                                                 <constraint firstAttribute="trailing" secondItem="hFX-uN-nbl" secondAttribute="trailing" id="LcM-cc-JU8"/>
                                                 <constraint firstItem="hFX-uN-nbl" firstAttribute="top" secondItem="9FU-85-AAw" secondAttribute="top" id="XpX-w2-aUI"/>
                                                 <constraint firstAttribute="bottom" secondItem="hFX-uN-nbl" secondAttribute="bottom" id="slE-tw-nnN"/>
-                                           </constraints>
+                                                <constraint firstItem="6pa-RH-zqg" firstAttribute="leading" secondItem="hFX-uN-nbl" secondAttribute="leading" constant="20" id="tRP-gI-3Eb"/>
+                                                <constraint firstItem="6pa-RH-zqg" firstAttribute="centerX" secondItem="hFX-uN-nbl" secondAttribute="centerX" id="xaz-9k-UHv"/>
+                                            </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Explore" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="46y-Zx-BuK">
                                             <rect key="frame" x="20" y="389.5" width="61.5" height="20"/>
@@ -105,6 +114,7 @@
                         <outlet property="exploreCollectionView" destination="o2Q-rP-Iyd" id="vpd-nA-w4W"/>
                         <outlet property="photosTableView" destination="DBj-oR-Znx" id="VW0-ON-kTR"/>
                         <outlet property="randomImageView" destination="hFX-uN-nbl" id="nh2-7F-akf"/>
+                        <outlet property="searchTextField" destination="6pa-RH-zqg" id="lyU-AW-fOr"/>
                         <outlet property="topView" destination="9FU-85-AAw" id="eIa-MS-8Lz"/>
                     </connections>
                 </viewController>

@@ -18,7 +18,7 @@ struct EditImageNavigator: EditImageNavigatorType {
     
     func toEditImage(image: UIImage) {
         let editImageViewController = EditImageViewController.instantiate()
-        let editImageViewModel = EditImageViewModel(image: image, useCase: EditImageUseCase())
+        let editImageViewModel = EditImageViewModel(originalImage: image, useCase: EditImageUseCase())
         editImageViewController.bindViewModel(to: editImageViewModel)
         navigationController.pushViewController(editImageViewController, animated: true)
     }

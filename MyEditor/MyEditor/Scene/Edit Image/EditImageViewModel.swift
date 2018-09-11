@@ -23,6 +23,7 @@ struct EditImageViewModel: ViewModelType {
         let clickRedoTrigger: Driver<Void>
         let sliderBrightnessTrigger: Driver<Float>
         let sliderContrastTrigger: Driver<Float>
+        let clickFilterType: Driver<IndexPath>
     }
     
     struct Output {
@@ -30,21 +31,29 @@ struct EditImageViewModel: ViewModelType {
         let clickedSave: Driver<Bool>
         let clickedDone: Driver<Void>
         let listEdit: Driver<[EditType]>
+        let listFilter: Driver<[FilterData]>
         let clickedTypeEdit: Driver<EditType>
+        let clickedFilterType: Driver<UIImage>
         let valueSliderDraw: Driver<Float>
         let clickedUndo: Driver<Void>
         let clickedRedo: Driver<Void>
         let valueSliderBrightness: Driver<Float>
         let valueSliderContrast: Driver<Float>
+        let imageLoadResult: Driver<Void>
     }
     
-    let image: UIImage
+    let originalImage: UIImage
     let useCase: EditImageUseCaseType
+    struct FilterData {
+        let title: String
+        let image: UIImage
+    }
     
     func transform(_ input: EditImageViewModel.Input) -> EditImageViewModel.Output {
         let editOptions = [EditType.crop, .draw, .brightness, .contrast]
+        let filterOptions = [FilterType.original, .chroma, .sobel, .chrome, .fade, .instant, .noir, .process, .tonal, .transfer, .sepiaTone]
         let image = input.loadTrigger
-            .map {  _ in self.image }
+            .map {  _ in self.originalImage }
         let clickedSave = input.clickSaveTrigger
             .withLatestFrom(input.latestImage) { _, image in
                 return image
@@ -64,17 +73,34 @@ struct EditImageViewModel: ViewModelType {
         let clickedRedo = input.clickRedoTrigger
         let valueSliderBrightness = input.sliderBrightnessTrigger
         let valueSliderContrast = input.sliderContrastTrigger
+        let filterData = BehaviorRelay<[FilterData]>(value: [FilterData]())
+        let imageLoadResult = input.loadTrigger.withLatestFrom(Driver.just(filterOptions)) { _, types in
+            var datas = [FilterData]()
+            for type in types {
+                let img = self.useCase.filterImage(image: self.originalImage, with: type, isScale: true)
+                let data = FilterData(title: type.title, image: img)
+                datas.append(data)
+            }
+            filterData.accept(datas)
+        }
+        let clickedFilterType = input.clickFilterType.withLatestFrom(filterData.asDriver()) { indexPath, filters in
+            self.useCase.filterImage(image: self.originalImage, with: filterOptions[indexPath.row], isScale: false)
+        }
+        
         return Output(
             image: image,
             clickedSave: clickedSave.asDriver(),
             clickedDone: clickedDone,
             listEdit: listEdit,
+            listFilter: filterData.asDriver(),
             clickedTypeEdit: clickedTypeEdit,
+            clickedFilterType: clickedFilterType,
             valueSliderDraw: valueSliderDraw,
             clickedUndo: clickedUndo,
             clickedRedo: clickedRedo,
             valueSliderBrightness: valueSliderBrightness,
-            valueSliderContrast: valueSliderContrast
+            valueSliderContrast: valueSliderContrast,
+            imageLoadResult: imageLoadResult
         )
     }
 }

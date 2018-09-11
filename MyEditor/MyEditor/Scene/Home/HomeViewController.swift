@@ -13,8 +13,8 @@ import RxCocoa
 import RxSwift
 
 class HomeViewController: UIViewController, BindableType {
-    @IBOutlet weak private var randomImageView: UIImageView!
-    @IBOutlet private weak var searchBar: UISearchBar!
+    @IBOutlet weak private var randomImageView: UIImageView!    
+    @IBOutlet weak private var searchTextField: UITextField!
     @IBOutlet private weak var exploreCollectionView: LoadMoreCollectionView!
     @IBOutlet private weak var photosTableView: RefreshTableView!
     @IBOutlet private weak var topView: UIView!
@@ -51,15 +51,12 @@ class HomeViewController: UIViewController, BindableType {
         exploreCollectionView.rx
             .setDelegate(self)
             .disposed(by: rx.disposeBag)
-        searchBar.do {
-            $0.backgroundColor = .clear
-        }
     }
     
     func bindViewModel() {
         let input = HomeViewModel.Input(
             loadTrigger: Driver.just(()),
-            randomImageTrigger: Driver.just(()).asObservable().repeatEvery(period: 10, scheduler: MainScheduler.instance).asDriverOnErrorJustComplete(),
+            randomImageTrigger: Driver.just(()).asObservable().repeatEvery(period: 10000, scheduler: MainScheduler.instance).asDriverOnErrorJustComplete(),
             loadCollectionTrigger:  Driver.just(()),
             reloadTableViewTrigger: photosTableView.loadMoreTopTrigger,
             loadMoreTableViewTrigger: photosTableView.loadMoreBottomTrigger,
@@ -67,7 +64,7 @@ class HomeViewController: UIViewController, BindableType {
             loadMoreCollectionViewTrigger: exploreCollectionView.loadMoreTrigger,
             selectTableViewTrigger: photosTableView.rx.itemSelected.asDriver(),
             selectCollectionViewTrigger: exploreCollectionView.rx.itemSelected.asDriver(),
-            toSearchViewTrigger: searchBar.rx.textDidBeginEditing.asDriver()
+            toSearchViewTrigger: searchTextField.rx.controlEvent([.editingDidBegin]).asDriverOnErrorJustComplete()
         )
         
         let output = viewModel.transform(input)

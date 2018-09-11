@@ -18,12 +18,13 @@ class DetailImageViewController: UIViewController, BindableType {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var downloadButton: UIButton!
     @IBOutlet weak var circleProgressRing: UICircularProgressRing!
-    @IBOutlet weak var editButton: UIButton!
     
     var viewModel: DetailImageViewModel!
+    var editItem: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,13 +43,19 @@ class DetailImageViewController: UIViewController, BindableType {
             $0.maxValue = 100
         }
         circleProgressRing.isHidden = true
+        editItem = UIBarButtonItem(image: UIImage(named: "edit"), style: .done, target: self, action: nil)
+        self.navigationItem.rightBarButtonItem = editItem
+        downloadButton.do {
+            let img = #imageLiteral(resourceName: "download").withRenderingMode(.alwaysTemplate)
+            $0.setImage(img, for: .normal)
+        }
     }
     
     func bindViewModel() {
         let imageBehavior = BehaviorRelay<UIImage>(value: UIImage())
         let downloadCompleteBehavior = BehaviorRelay<Bool>(value: false)
         let input = DetailImageViewModel.Input( downloadTrigger: downloadButton.rx.tap.asDriver(),
-                                                editTrigger: editButton.rx.tap.asDriver(),
+                                                editTrigger: editItem.rx.tap.asDriver(),
                                                 imageTrigger: imageBehavior.asDriver(),
                                                 downloadCompleteTrigger: downloadCompleteBehavior.asDriver())
         let output = viewModel.transform(input)

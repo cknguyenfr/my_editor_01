@@ -122,6 +122,14 @@
 		1BF894172140FA0A00EC6C3D /* SearchUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF894162140FA0A00EC6C3D /* SearchUseCase.swift */; };
 		1BF894192140FDB700EC6C3D /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF894182140FDB700EC6C3D /* SearchViewModel.swift */; };
 		1BF8941B2141005200EC6C3D /* SearchNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF8941A2141005200EC6C3D /* SearchNavigator.swift */; };
+		1BFFCF49214807F800EF41D9 /* Chromakey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFFCF48214807F800EF41D9 /* Chromakey.swift */; };
+		1BFFCF4C21480BD100EF41D9 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFFCF4B21480BD100EF41D9 /* FilterView.swift */; };
+		1BFFCF4E21480C2B00EF41D9 /* FilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BFFCF4D21480C2B00EF41D9 /* FilterView.xib */; };
+		1BFFCF5121480D9D00EF41D9 /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFFCF4F21480D9D00EF41D9 /* FilterCell.swift */; };
+		1BFFCF5221480D9D00EF41D9 /* FilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BFFCF5021480D9D00EF41D9 /* FilterCell.xib */; };
+		1BFFCF542148118D00EF41D9 /* SobelFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFFCF532148118D00EF41D9 /* SobelFilter.swift */; };
+		1BFFCF56214817C500EF41D9 /* FilterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFFCF55214817C500EF41D9 /* FilterType.swift */; };
+		1BFFCF5821483E0900EF41D9 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFFCF5721483E0900EF41D9 /* StringExtension.swift */; };
 		CAD519AA52EBCA719AF780D4 /* Pods_MyEditor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B314E99F19649130D233435 /* Pods_MyEditor.framework */; };
 /* End PBXBuildFile section */
 
@@ -243,6 +251,14 @@
 		1BF894162140FA0A00EC6C3D /* SearchUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUseCase.swift; sourceTree = "<group>"; };
 		1BF894182140FDB700EC6C3D /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		1BF8941A2141005200EC6C3D /* SearchNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNavigator.swift; sourceTree = "<group>"; };
+		1BFFCF48214807F800EF41D9 /* Chromakey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chromakey.swift; sourceTree = "<group>"; };
+		1BFFCF4B21480BD100EF41D9 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
+		1BFFCF4D21480C2B00EF41D9 /* FilterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterView.xib; sourceTree = "<group>"; };
+		1BFFCF4F21480D9D00EF41D9 /* FilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
+		1BFFCF5021480D9D00EF41D9 /* FilterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterCell.xib; sourceTree = "<group>"; };
+		1BFFCF532148118D00EF41D9 /* SobelFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SobelFilter.swift; sourceTree = "<group>"; };
+		1BFFCF55214817C500EF41D9 /* FilterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterType.swift; sourceTree = "<group>"; };
+		1BFFCF5721483E0900EF41D9 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		77172BC32C620FEE220EE457 /* Pods-MyEditor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyEditor.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyEditor/Pods-MyEditor.debug.xcconfig"; sourceTree = "<group>"; };
 		7B314E99F19649130D233435 /* Pods_MyEditor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyEditor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E625F21083A8C8D24E625011 /* Pods-MyEditor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyEditor.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyEditor/Pods-MyEditor.release.xcconfig"; sourceTree = "<group>"; };
@@ -369,6 +385,7 @@
 				08F6EE8B2136599F00F895B6 /* PHPhotoLibrary+SaveImage.swift */,
 				1BD4A3F52137CBCB0022643F /* ImageViewExtension.swift */,
 				0867750321465F9A0062F965 /* UIView+.swift */,
+				1BFFCF5721483E0900EF41D9 /* StringExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -515,6 +532,7 @@
 				08DA31622140C9FA00DE8E3B /* EditImageNavigator.swift */,
 				086774F52146075D0062F965 /* EditImageUseCase.swift */,
 				086774FB21463E550062F965 /* EditType.swift */,
+				1BFFCF55214817C500EF41D9 /* FilterType.swift */,
 			);
 			path = "Edit Image";
 			sourceTree = "<group>";
@@ -522,6 +540,7 @@
 		08DA31562140C11000DE8E3B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1BFFCF4A21480BAB00EF41D9 /* FilterView */,
 				086774FE2146479C0062F965 /* DrawView */,
 				086774FD2146478E0062F965 /* EditView */,
 			);
@@ -533,6 +552,8 @@
 			children = (
 				08DA315A2140C19700DE8E3B /* EditCell.swift */,
 				08DA315B2140C19700DE8E3B /* EditCell.xib */,
+				1BFFCF4F21480D9D00EF41D9 /* FilterCell.swift */,
+				1BFFCF5021480D9D00EF41D9 /* FilterCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -589,6 +610,7 @@
 		1B757C26213643460007B882 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				1BFFCF45214807AE00EF41D9 /* Filter */,
 				1BABB0CA2146DB020071A960 /* DetailImage */,
 				08DA31532140BF6300DE8E3B /* Edit Image */,
 				1BF8940A2140E08600EC6C3D /* Search */,
@@ -682,6 +704,24 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		1BFFCF45214807AE00EF41D9 /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				1BFFCF48214807F800EF41D9 /* Chromakey.swift */,
+				1BFFCF532148118D00EF41D9 /* SobelFilter.swift */,
+			);
+			path = Filter;
+			sourceTree = "<group>";
+		};
+		1BFFCF4A21480BAB00EF41D9 /* FilterView */ = {
+			isa = PBXGroup;
+			children = (
+				1BFFCF4B21480BD100EF41D9 /* FilterView.swift */,
+				1BFFCF4D21480C2B00EF41D9 /* FilterView.xib */,
+			);
+			path = FilterView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -742,6 +782,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BFFCF4E21480C2B00EF41D9 /* FilterView.xib in Resources */,
 				1BF894152140E2FE00EC6C3D /* SearchCell.xib in Resources */,
 				08787A9C2134DC3200569477 /* LaunchScreen.storyboard in Resources */,
 				1B08229421425AA000C6EFF0 /* SearchHeader.xib in Resources */,
@@ -763,6 +804,7 @@
 				08C1F212213E22CB005704D2 /* ListImageCell.xib in Resources */,
 				08072AAD2137A1F80020F80E /* ListAlbumCell.xib in Resources */,
 				1B757C3D213645D00007B882 /* ImageTableCell.xib in Resources */,
+				1BFFCF5221480D9D00EF41D9 /* FilterCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -880,9 +922,12 @@
 				08787AAF2134F13500569477 /* Observable+.swift in Sources */,
 				1B082292214259A800C6EFF0 /* SearchHeader.swift in Sources */,
 				0851BB9D2138D6DD0059C43F /* LibraryNavigator.swift in Sources */,
+				1BFFCF5821483E0900EF41D9 /* StringExtension.swift in Sources */,
 				1B757C4921367DB10007B882 /* HomeUseCase.swift in Sources */,
 				08787AC02134F24000569477 /* PagingInfo.swift in Sources */,
 				08E77BC5213E7D15000F93A3 /* ImageDetailNavigator.swift in Sources */,
+				1BFFCF56214817C500EF41D9 /* FilterType.swift in Sources */,
+				1BFFCF5121480D9D00EF41D9 /* FilterCell.swift in Sources */,
 				08E77BC9213E7E0C000F93A3 /* ImageDetailViewModel.swift in Sources */,
 				1B757C36213645A00007B882 /* ImageCollectionCell.swift in Sources */,
 				08C1F214213E25E9005704D2 /* ListImageNavigator.swift in Sources */,
@@ -900,6 +945,7 @@
 				08C1F216213E28C5005704D2 /* ListImageViewModel.swift in Sources */,
 				1B757C4B21368AA50007B882 /* HomeViewModel.swift in Sources */,
 				1B757C3C213645D00007B882 /* ImageTableCell.swift in Sources */,
+				1BFFCF49214807F800EF41D9 /* Chromakey.swift in Sources */,
 				08787A922134DC3100569477 /* AppDelegate.swift in Sources */,
 				1BABB0D62146E23F0071A960 /* DetailImageViewModel.swift in Sources */,
 				1BABB0D22146E0710071A960 /* DetailImageUseCase.swift in Sources */,
@@ -923,6 +969,7 @@
 				08787AC72135286200569477 /* Photo.swift in Sources */,
 				1B505039213F7C680014C6A5 /* CollectionImagesViewModel.swift in Sources */,
 				08787AF921352D0A00569477 /* PhotoRequest.swift in Sources */,
+				1BFFCF4C21480BD100EF41D9 /* FilterView.swift in Sources */,
 				08DA315C2140C19700DE8E3B /* EditCell.swift in Sources */,
 				08787AAB2134F13500569477 /* ErrorTracker.swift in Sources */,
 				08787AF721352C3400569477 /* HTTPStatusCode.swift in Sources */,
@@ -940,6 +987,7 @@
 				08072AA6213783AC0020F80E /* AppUseCase.swift in Sources */,
 				08072AA4213783860020F80E /* AppViewModel.swift in Sources */,
 				1BABB0D02146DE290071A960 /* DetailImageRequest.swift in Sources */,
+				1BFFCF542148118D00EF41D9 /* SobelFilter.swift in Sources */,
 				08F6EE8A21364A1B00F895B6 /* DownloadService.swift in Sources */,
 				08072AAC2137A1F80020F80E /* ListAlbumCell.swift in Sources */,
 			);
@@ -1087,14 +1135,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VG5JZ5RSZ7;
+				DEVELOPMENT_TEAM = KG5F9H52Q8;
 				INFOPLIST_FILE = MyEditor/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = c.MyEditor;
+				PRODUCT_BUNDLE_IDENTIFIER = shin.MyEditor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1107,14 +1155,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VG5JZ5RSZ7;
+				DEVELOPMENT_TEAM = KG5F9H52Q8;
 				INFOPLIST_FILE = MyEditor/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = c.MyEditor;
+				PRODUCT_BUNDLE_IDENTIFIER = shin.MyEditor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

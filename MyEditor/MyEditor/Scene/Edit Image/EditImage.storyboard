@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -257,16 +257,22 @@
                                 <rect key="frame" x="0.0" y="466" width="375" height="150"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RYK-hm-ksi" customClass="FilterView" customModule="MyEditor" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="466" width="375" height="150"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="VMF-eP-czV" firstAttribute="height" secondItem="soT-dN-Zsj" secondAttribute="height" id="0Gv-zB-bOm"/>
                             <constraint firstItem="hTa-Zm-oae" firstAttribute="centerY" secondItem="soT-dN-Zsj" secondAttribute="centerY" id="0U8-pF-WEt"/>
                             <constraint firstItem="QdD-0S-zeu" firstAttribute="leading" secondItem="D9A-Rx-wB5" secondAttribute="leading" id="0eN-Gr-z27"/>
+                            <constraint firstItem="RYK-hm-ksi" firstAttribute="leading" secondItem="D9A-Rx-wB5" secondAttribute="leading" id="333-zc-cI0"/>
                             <constraint firstItem="8kf-RS-QUt" firstAttribute="height" secondItem="soT-dN-Zsj" secondAttribute="height" id="5m0-eU-qhu"/>
                             <constraint firstItem="uKc-pF-H6g" firstAttribute="centerX" secondItem="soT-dN-Zsj" secondAttribute="centerX" id="7fB-IX-tW4"/>
                             <constraint firstItem="uKc-pF-H6g" firstAttribute="centerY" secondItem="soT-dN-Zsj" secondAttribute="centerY" id="8jq-ba-dcJ"/>
                             <constraint firstItem="WZg-3a-06v" firstAttribute="height" secondItem="P6G-0V-Y3J" secondAttribute="height" multiplier="50/667" id="CBq-Bi-aar"/>
+                            <constraint firstItem="D9A-Rx-wB5" firstAttribute="trailing" secondItem="RYK-hm-ksi" secondAttribute="trailing" id="CRA-D0-yv2"/>
                             <constraint firstItem="uKc-pF-H6g" firstAttribute="width" secondItem="soT-dN-Zsj" secondAttribute="width" id="DFn-mv-1nR"/>
                             <constraint firstItem="D9A-Rx-wB5" firstAttribute="bottom" secondItem="WZg-3a-06v" secondAttribute="bottom" id="H39-VZ-kPs"/>
                             <constraint firstItem="WZg-3a-06v" firstAttribute="top" secondItem="soT-dN-Zsj" secondAttribute="bottom" constant="1" id="HNU-18-DFV"/>
@@ -287,9 +293,11 @@
                             <constraint firstItem="D9A-Rx-wB5" firstAttribute="trailing" secondItem="WZg-3a-06v" secondAttribute="trailing" id="fQR-mn-c0X"/>
                             <constraint firstItem="VMF-eP-czV" firstAttribute="centerY" secondItem="soT-dN-Zsj" secondAttribute="centerY" id="fwi-Xq-Gla"/>
                             <constraint firstItem="UU4-2b-17I" firstAttribute="leading" secondItem="D9A-Rx-wB5" secondAttribute="leading" id="gD1-Ka-YH4"/>
+                            <constraint firstItem="WZg-3a-06v" firstAttribute="top" secondItem="RYK-hm-ksi" secondAttribute="bottom" constant="1" id="jDT-eK-yMl"/>
                             <constraint firstItem="VMF-eP-czV" firstAttribute="centerX" secondItem="soT-dN-Zsj" secondAttribute="centerX" id="ks4-Ds-xeJ"/>
                             <constraint firstItem="YyM-bd-g6y" firstAttribute="leading" secondItem="UU4-2b-17I" secondAttribute="leading" id="nkf-rM-d0J"/>
                             <constraint firstItem="D9A-Rx-wB5" firstAttribute="trailing" secondItem="UU4-2b-17I" secondAttribute="trailing" id="pu9-Wn-4RK"/>
+                            <constraint firstItem="RYK-hm-ksi" firstAttribute="height" secondItem="soT-dN-Zsj" secondAttribute="height" id="rAT-OG-cQE"/>
                             <constraint firstItem="8kf-RS-QUt" firstAttribute="width" secondItem="soT-dN-Zsj" secondAttribute="width" id="tSB-45-pdO"/>
                             <constraint firstItem="8kf-RS-QUt" firstAttribute="centerX" secondItem="soT-dN-Zsj" secondAttribute="centerX" id="tsb-KJ-Hiv"/>
                             <constraint firstItem="WZg-3a-06v" firstAttribute="top" secondItem="QdD-0S-zeu" secondAttribute="bottom" id="u6g-6m-cFg"/>
@@ -306,6 +314,7 @@
                         <outlet property="contrastView" destination="8kf-RS-QUt" id="kzp-G0-SII"/>
                         <outlet property="drawView" destination="uKc-pF-H6g" id="3r7-0B-9SY"/>
                         <outlet property="editView" destination="soT-dN-Zsj" id="cVN-wL-2sj"/>
+                        <outlet property="filterView" destination="RYK-hm-ksi" id="fNu-JO-XwF"/>
                         <outlet property="imageView" destination="Gdl-9f-g8u" id="wds-rp-B2v"/>
                         <outlet property="leading" destination="DFL-Oc-7cR" id="he9-g9-YXp"/>
                         <outlet property="leadingImageView" destination="nkf-rM-d0J" id="R2e-c3-759"/>

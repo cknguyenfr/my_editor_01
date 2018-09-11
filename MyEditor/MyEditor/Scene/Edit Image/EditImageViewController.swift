@@ -49,6 +49,7 @@ class EditImageViewController: UIViewController, BindableType {
     @IBOutlet private var top: NSLayoutConstraint!
     @IBOutlet private var leadingImageView: NSLayoutConstraint!
     @IBOutlet private var topImageView: NSLayoutConstraint!
+    @IBOutlet private weak var filterView: FilterView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +58,7 @@ class EditImageViewController: UIViewController, BindableType {
     
     private func configView() {
         editView.configCollectionView(viewController: self)
+        filterView.configCollectionView(viewController: self)
         drawView.delegate = self
         saveItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: nil)
         doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: nil)
@@ -64,18 +66,10 @@ class EditImageViewController: UIViewController, BindableType {
     }
     
     private func configFilter() {
-<<<<<<< HEAD
         guard let image = imageView.image, let cgImage = image.cgImage else {
             return
         }
         let aCIImage = CIImage(cgImage: cgImage)
-=======
-        guard let image = imageView.image else {
-            return
-        }
-        let cgImage = image.cgImage
-        let aCIImage = CIImage(cgImage: cgImage!)
->>>>>>> brightness + contrast
         contrastFilter?.setValue(aCIImage, forKey: "inputImage")
         brightnessFilter?.setValue(aCIImage, forKey: "inputImage")
     }
@@ -145,7 +139,8 @@ class EditImageViewController: UIViewController, BindableType {
                                              clickUndoTrigger: drawView.getUndoButton().rx.tap.asDriver(),
                                              clickRedoTrigger: drawView.getRedoButton().rx.tap.asDriver(),
                                              sliderBrightnessTrigger: brightnessSlider.rx.value.asDriver(),
-                                             sliderContrastTrigger: contrastSlider.rx.value.asDriver())
+                                             sliderContrastTrigger: contrastSlider.rx.value.asDriver(),
+                                             clickFilterType: filterView.getCollectionView().rx.itemSelected.asDriver())
         let output = viewModel.transform(input)
         output.image
             .drive(imageView.rx.image)
@@ -174,6 +169,14 @@ class EditImageViewController: UIViewController, BindableType {
                 return cell
             }
             .disposed(by: rx.disposeBag)
+        output.listFilter
+            .drive(filterView.getCollectionView().rx.items) { collectionView, index, element in
+                let indexPath = IndexPath(row: index, section: 0)
+                let cell: FilterCell = collectionView.dequeueReusableCell(for: indexPath)
+                cell.fillData(image: element.image, name: element.title)
+                return cell
+            }
+            .disposed(by: rx.disposeBag)
         output.clickedTypeEdit
             .drive(onNext: { [unowned self] typeEdit in
                 self.navigationItem.rightBarButtonItem = self.doneItem
@@ -198,6 +201,12 @@ class EditImageViewController: UIViewController, BindableType {
                     self.state = .contrast
                     self.view.bringSubview(toFront: self.contrastView)
                 }
+            })
+            .disposed(by: rx.disposeBag)
+        output.clickedFilterType
+            .drive(onNext: { [unowned self] img in
+                self.navigationItem.rightBarButtonItem = self.doneItem
+                self.imageView.image = img
             })
             .disposed(by: rx.disposeBag)
         output.valueSliderDraw
@@ -228,6 +237,9 @@ class EditImageViewController: UIViewController, BindableType {
         output.valueSliderContrast.drive(onNext: { [unowned self] value in
                 self.changeContrast(value: value)
             })
+            .disposed(by: rx.disposeBag)
+        output.imageLoadResult
+            .drive()
             .disposed(by: rx.disposeBag)
         guard let image = imageView.image else {
             return
@@ -372,6 +384,19 @@ class EditImageViewController: UIViewController, BindableType {
 extension EditImageViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: CGFloat(Constant.widthCell), height: collectionView.frame.size.height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) {
+            cell.layer.borderColor = UIColor.gray.cgColor
+            cell.layer.borderWidth = 2.0
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) {
+            cell.layer.borderColor = UIColor.white.cgColor
+        }
     }
 }
 
