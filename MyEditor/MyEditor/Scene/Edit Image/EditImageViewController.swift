@@ -64,10 +64,18 @@ class EditImageViewController: UIViewController, BindableType {
     }
     
     private func configFilter() {
+<<<<<<< HEAD
         guard let image = imageView.image, let cgImage = image.cgImage else {
             return
         }
         let aCIImage = CIImage(cgImage: cgImage)
+=======
+        guard let image = imageView.image else {
+            return
+        }
+        let cgImage = image.cgImage
+        let aCIImage = CIImage(cgImage: cgImage!)
+>>>>>>> brightness + contrast
         contrastFilter?.setValue(aCIImage, forKey: "inputImage")
         brightnessFilter?.setValue(aCIImage, forKey: "inputImage")
     }
